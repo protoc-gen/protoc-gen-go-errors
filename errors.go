@@ -14,7 +14,8 @@ import (
 )
 
 const (
-	fmtPackage = protogen.GoImportPath("fmt")
+	errorsPackage = protogen.GoImportPath("github.com/memoria-x/protoc-gen-go-errors/errors")
+	fmtPackage    = protogen.GoImportPath("fmt")
 )
 
 var enCases = cases.Title(language.AmericanEnglish, cases.NoLower)
@@ -30,6 +31,7 @@ func generateFile(gen *protogen.Plugin, file *protogen.File) *protogen.Generated
 	g.P("package ", file.GoPackageName)
 	g.P()
 	g.QualifiedGoIdent(fmtPackage.Ident(""))
+	g.QualifiedGoIdent(errorsPackage.Ident(""))
 	generateFileContent(gen, file, g)
 	return g
 }
