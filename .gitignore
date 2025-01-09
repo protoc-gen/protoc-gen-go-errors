@@ -25,3 +25,4 @@ go.work.sum
 .env
 
 protoc-gen-go-errors
+protoc-gen-go-errors.wasm
