@@ -33,3 +33,18 @@ func (e *errorWrapper) execute() string {
 	}
 	return buf.String()
 }
+
+//go:embed commonTemplate.tpl
+var commonTemplate string
+
+func executeCommon() string {
+	buf := new(bytes.Buffer)
+	commonTmpl, err := template.New("common").Parse(commonTemplate)
+	if err != nil {
+		panic(err)
+	}
+	if err := commonTmpl.Execute(buf, nil); err != nil {
+		panic(err)
+	}
+	return buf.String()
+}

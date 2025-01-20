@@ -14,7 +14,8 @@ import (
 )
 
 const (
-	errorsPackage = protogen.GoImportPath("github.com/memoria-x/protoc-gen-go-errors/errors")
+	errorsPackage         = protogen.GoImportPath("github.com/memoria-x/protoc-gen-go-errors/errors")
+	officialErrorsPackage = protogen.GoImportPath("errors")
 )
 
 var enCases = cases.Title(language.AmericanEnglish, cases.NoLower)
@@ -30,6 +31,7 @@ func generateFile(gen *protogen.Plugin, file *protogen.File) *protogen.Generated
 	g.P("package ", file.GoPackageName)
 	g.P()
 	g.QualifiedGoIdent(errorsPackage.Ident(""))
+	g.QualifiedGoIdent(officialErrorsPackage.Ident(""))
 	generateFileContent(gen, file, g)
 	return g
 }
@@ -39,6 +41,8 @@ func generateFileContent(gen *protogen.Plugin, file *protogen.File, g *protogen.
 		return
 	}
 
+	g.P()
+	g.P(executeCommon())
 	g.P()
 	index := 0
 	for _, enum := range file.Enums {
