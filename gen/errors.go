@@ -1,8 +1,8 @@
-package main
+package gen
 
 import (
 	"fmt"
-	"github.com/memoria-x/protoc-gen-go-errors/errors"
+	"github.com/protoc-gen/protoc-gen-go-errors/errors"
 	"strings"
 	"unicode"
 
@@ -14,13 +14,13 @@ import (
 )
 
 const (
-	errorsPackage         = protogen.GoImportPath("github.com/memoria-x/protoc-gen-go-errors/errors")
+	errorsPackage         = protogen.GoImportPath("github.com/protoc-gen/protoc-gen-go-errors/errors")
 	officialErrorsPackage = protogen.GoImportPath("errors")
 )
 
 var enCases = cases.Title(language.AmericanEnglish, cases.NoLower)
 
-func generateFile(gen *protogen.Plugin, file *protogen.File) *protogen.GeneratedFile {
+func GenerateFile(gen *protogen.Plugin, file *protogen.File) *protogen.GeneratedFile {
 	if len(file.Enums) == 0 {
 		return nil
 	}

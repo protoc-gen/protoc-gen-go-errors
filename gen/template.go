@@ -1,4 +1,4 @@
-package main
+package gen
 
 import (
 	"bytes"
@@ -6,7 +6,7 @@ import (
 	"text/template"
 )
 
-//go:embed errorsTemplate.tpl
+//go:embed template/errorsTemplate.tpl
 var errorsTemplate string
 
 type errorInfo struct {
@@ -34,7 +34,7 @@ func (e *errorWrapper) execute() string {
 	return buf.String()
 }
 
-//go:embed commonTemplate.tpl
+//go:embed template/commonTemplate.tpl
 var commonTemplate string
 
 func executeCommon() string {

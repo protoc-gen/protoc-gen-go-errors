@@ -1,4 +1,4 @@
-module github.com/memoria-x/protoc-gen-go-errors
+module github.com/protoc-gen/protoc-gen-go-errors
 
 go 1.23.4
 
