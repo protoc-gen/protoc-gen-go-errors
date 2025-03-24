@@ -1,6 +1,7 @@
 package errors
 
 import (
+	"context"
 	"errors"
 	"fmt"
 
@@ -16,6 +17,20 @@ const (
 	// SupportPackageIsVersion1 this constant should not be referenced by any other code.
 	SupportPackageIsVersion1 = true
 )
+
+// I18nMessage 定义了错误消息国际化的接口
+type I18nMessage interface {
+	// Localize 根据上下文和数据对错误原因进行本地化
+	Localize(ctx context.Context, reason string, data map[string]any) string
+}
+
+// 全局的i18n管理器
+var globalI18n I18nMessage
+
+// RegisterI18nManager 注册全局的i18n管理器
+func RegisterI18nManager(i18n I18nMessage) {
+	globalI18n = i18n
+}
 
 // Error is a status error.
 type Error struct {
@@ -64,6 +79,22 @@ func (e *Error) GRPCStatus() *status.Status {
 
 // New returns an error object for the code, message.
 func New(code int, reason, message string) *Error {
+	return &Error{
+		Status: Status{
+			Code:    int32(code),
+			Message: message,
+			Reason:  reason,
+		},
+	}
+}
+
+// NewWithContext 使用context创建错误对象，支持i18n本地化
+func NewWithContext(code int, reason string, ctx context.Context, data map[string]any) *Error {
+	message := ""
+	// 如果全局i18n管理器已注册，则使用它来本地化错误消息
+	if globalI18n != nil {
+		message = globalI18n.Localize(ctx, reason, data)
+	}
 	return &Error{
 		Status: Status{
 			Code:    int32(code),

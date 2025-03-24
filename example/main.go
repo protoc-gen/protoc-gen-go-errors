@@ -8,5 +8,7 @@ func main() {
 		log.Fatalln("error")
 	}
 
+	ExampleI18nErrors()
+
 	log.Println("ok")
 }
