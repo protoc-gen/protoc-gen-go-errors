@@ -15,8 +15,11 @@ func Error{{ .CamelValue }}() *errors.Error {
 }
 
 {{ if .HasComment }}{{ .Comment }}{{ end -}}
-func Error{{ .CamelValue }}WithContext(ctx context.Context, data any) *errors.Error {
-	return errors.NewWithContext(ctx, {{ .HTTPCode }}, {{ .Name }}_{{ .Value }}.String(), data)
+func Error{{ .CamelValue }}WithContext(ctx context.Context, params ...any) *errors.Error {
+    if len(params) == 0 {
+        return errors.New({{ .HTTPCode }}, {{ .Name }}_{{ .Value }}.String(), "")
+    }
+	return errors.NewWithContext(ctx, {{ .HTTPCode }}, {{ .Name }}_{{ .Value }}.String(), params)
 }
 
 {{- end }}
