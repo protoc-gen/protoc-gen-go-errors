@@ -13,7 +13,7 @@ type SimpleI18n struct {
 }
 
 // Localize 根据上下文和数据本地化错误消息
-func (i *SimpleI18n) Localize(ctx context.Context, reason string, data map[string]any) string {
+func (i *SimpleI18n) Localize(ctx context.Context, reason string, data any) string {
 	lang := GetLanguageFromContext(ctx)
 	if templates, ok := i.templates[reason]; ok {
 		if template, ok := templates[lang]; ok {

@@ -21,7 +21,7 @@ const (
 // I18nMessage 定义了错误消息国际化的接口
 type I18nMessage interface {
 	// Localize 根据上下文和数据对错误原因进行本地化
-	Localize(ctx context.Context, reason string, data map[string]any) string
+	Localize(ctx context.Context, reason string, data any) string
 }
 
 // 全局的i18n管理器
@@ -89,7 +89,7 @@ func New(code int, reason, message string) *Error {
 }
 
 // NewWithContext 使用context创建错误对象，支持i18n本地化
-func NewWithContext(code int, reason string, ctx context.Context, data map[string]any) *Error {
+func NewWithContext(code int, reason string, ctx context.Context, data any) *Error {
 	message := ""
 	// 如果全局i18n管理器已注册，则使用它来本地化错误消息
 	if globalI18n != nil {

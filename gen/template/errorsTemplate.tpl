@@ -15,7 +15,7 @@ func Error{{ .CamelValue }}() *errors.Error {
 }
 
 {{ if .HasComment }}{{ .Comment }}{{ end -}}
-func Error{{ .CamelValue }}WithContext(ctx context.Context, data map[string]any) *errors.Error {
+func Error{{ .CamelValue }}WithContext(ctx context.Context, data any) *errors.Error {
 	return errors.NewWithContext({{ .HTTPCode }}, {{ .Name }}_{{ .Value }}.String(), ctx, data)
 }
 
