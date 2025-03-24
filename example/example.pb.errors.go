@@ -35,8 +35,8 @@ func ErrorBadRequest() *errors.Error {
 	return errors.New(400, ClientError_BAD_REQUEST.String(), "")
 }
 
-func ErrorBadRequestWithContext(ctx context.Context, data map[string]any) *errors.Error {
-	return errors.NewWithContext(400, ClientError_BAD_REQUEST.String(), ctx, data)
+func ErrorBadRequestWithContext(ctx context.Context, data any) *errors.Error {
+	return errors.NewWithContext(ctx, 400, ClientError_BAD_REQUEST.String(), data)
 }
 
 func IsUserNotFound(err error) bool {
@@ -51,8 +51,8 @@ func ErrorUserNotFound() *errors.Error {
 	return errors.New(400, ClientError_USER_NOT_FOUND.String(), "")
 }
 
-func ErrorUserNotFoundWithContext(ctx context.Context, data map[string]any) *errors.Error {
-	return errors.NewWithContext(400, ClientError_USER_NOT_FOUND.String(), ctx, data)
+func ErrorUserNotFoundWithContext(ctx context.Context, data any) *errors.Error {
+	return errors.NewWithContext(ctx, 400, ClientError_USER_NOT_FOUND.String(), data)
 }
 
 func IsUserAlreadyExists(err error) bool {
@@ -67,8 +67,8 @@ func ErrorUserAlreadyExists() *errors.Error {
 	return errors.New(400, ClientError_USER_ALREADY_EXISTS.String(), "")
 }
 
-func ErrorUserAlreadyExistsWithContext(ctx context.Context, data map[string]any) *errors.Error {
-	return errors.NewWithContext(400, ClientError_USER_ALREADY_EXISTS.String(), ctx, data)
+func ErrorUserAlreadyExistsWithContext(ctx context.Context, data any) *errors.Error {
+	return errors.NewWithContext(ctx, 400, ClientError_USER_ALREADY_EXISTS.String(), data)
 }
 
 func IsInvalidEmailOrPassword(err error) bool {
@@ -83,8 +83,8 @@ func ErrorInvalidEmailOrPassword() *errors.Error {
 	return errors.New(400, ClientError_INVALID_EMAIL_OR_PASSWORD.String(), "")
 }
 
-func ErrorInvalidEmailOrPasswordWithContext(ctx context.Context, data map[string]any) *errors.Error {
-	return errors.NewWithContext(400, ClientError_INVALID_EMAIL_OR_PASSWORD.String(), ctx, data)
+func ErrorInvalidEmailOrPasswordWithContext(ctx context.Context, data any) *errors.Error {
+	return errors.NewWithContext(ctx, 400, ClientError_INVALID_EMAIL_OR_PASSWORD.String(), data)
 }
 
 func IsProviderNotSupported(err error) bool {
@@ -99,8 +99,8 @@ func ErrorProviderNotSupported() *errors.Error {
 	return errors.New(400, ClientError_PROVIDER_NOT_SUPPORTED.String(), "")
 }
 
-func ErrorProviderNotSupportedWithContext(ctx context.Context, data map[string]any) *errors.Error {
-	return errors.NewWithContext(400, ClientError_PROVIDER_NOT_SUPPORTED.String(), ctx, data)
+func ErrorProviderNotSupportedWithContext(ctx context.Context, data any) *errors.Error {
+	return errors.NewWithContext(ctx, 400, ClientError_PROVIDER_NOT_SUPPORTED.String(), data)
 }
 
 func IsUnauthorized(err error) bool {
@@ -115,8 +115,8 @@ func ErrorUnauthorized() *errors.Error {
 	return errors.New(401, UnauthorizedError_UNAUTHORIZED.String(), "")
 }
 
-func ErrorUnauthorizedWithContext(ctx context.Context, data map[string]any) *errors.Error {
-	return errors.NewWithContext(401, UnauthorizedError_UNAUTHORIZED.String(), ctx, data)
+func ErrorUnauthorizedWithContext(ctx context.Context, data any) *errors.Error {
+	return errors.NewWithContext(ctx, 401, UnauthorizedError_UNAUTHORIZED.String(), data)
 }
 
 func IsInvalidToken(err error) bool {
@@ -131,8 +131,8 @@ func ErrorInvalidToken() *errors.Error {
 	return errors.New(401, UnauthorizedError_INVALID_TOKEN.String(), "")
 }
 
-func ErrorInvalidTokenWithContext(ctx context.Context, data map[string]any) *errors.Error {
-	return errors.NewWithContext(401, UnauthorizedError_INVALID_TOKEN.String(), ctx, data)
+func ErrorInvalidTokenWithContext(ctx context.Context, data any) *errors.Error {
+	return errors.NewWithContext(ctx, 401, UnauthorizedError_INVALID_TOKEN.String(), data)
 }
 
 func IsTokenExpired(err error) bool {
@@ -147,8 +147,8 @@ func ErrorTokenExpired() *errors.Error {
 	return errors.New(401, UnauthorizedError_TOKEN_EXPIRED.String(), "")
 }
 
-func ErrorTokenExpiredWithContext(ctx context.Context, data map[string]any) *errors.Error {
-	return errors.NewWithContext(401, UnauthorizedError_TOKEN_EXPIRED.String(), ctx, data)
+func ErrorTokenExpiredWithContext(ctx context.Context, data any) *errors.Error {
+	return errors.NewWithContext(ctx, 401, UnauthorizedError_TOKEN_EXPIRED.String(), data)
 }
 
 func IsInternalServerError(err error) bool {
@@ -163,6 +163,6 @@ func ErrorInternalServerError() *errors.Error {
 	return errors.New(500, ServerError_INTERNAL_SERVER_ERROR.String(), "")
 }
 
-func ErrorInternalServerErrorWithContext(ctx context.Context, data map[string]any) *errors.Error {
-	return errors.NewWithContext(500, ServerError_INTERNAL_SERVER_ERROR.String(), ctx, data)
+func ErrorInternalServerErrorWithContext(ctx context.Context, data any) *errors.Error {
+	return errors.NewWithContext(ctx, 500, ServerError_INTERNAL_SERVER_ERROR.String(), data)
 }

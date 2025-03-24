@@ -88,10 +88,10 @@ func New(code int, reason, message string) *Error {
 	}
 }
 
-// NewWithContext 使用context创建错误对象，支持i18n本地化
-func NewWithContext(code int, reason string, ctx context.Context, data any) *Error {
+// NewWithContext Use context to create error objects and support i18n localization
+func NewWithContext(ctx context.Context, code int, reason string, data any) *Error {
 	message := ""
-	// 如果全局i18n管理器已注册，则使用它来本地化错误消息
+	// If the global i18n manager is registered, it is used to localize the error message
 	if globalI18n != nil {
 		message = globalI18n.Localize(ctx, reason, data)
 	}

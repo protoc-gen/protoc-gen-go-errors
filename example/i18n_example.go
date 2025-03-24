@@ -71,9 +71,9 @@ func ExampleI18nErrors() {
 
 	// 使用不同的上下文创建错误
 	// 注意：实际代码中使用生成的 ErrorUserNotFoundWithContext 方法
-	enErr := errors.NewWithContext(400, "ClientError_USER_NOT_FOUND", enCtx, nil)
-	zhErr := errors.NewWithContext(400, "ClientError_USER_NOT_FOUND", zhCtx, nil)
-	jaErr := errors.NewWithContext(400, "ClientError_USER_NOT_FOUND", jaCtx, nil)
+	enErr := errors.NewWithContext(enCtx, 400, "ClientError_USER_NOT_FOUND", nil)
+	zhErr := errors.NewWithContext(zhCtx, 400, "ClientError_USER_NOT_FOUND", nil)
+	jaErr := errors.NewWithContext(jaCtx, 400, "ClientError_USER_NOT_FOUND", nil)
 
 	// 输出不同语言的错误消息
 	log.Printf("English error: %v", enErr)
