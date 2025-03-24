@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"sync"
 
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/status"
@@ -18,18 +19,21 @@ const (
 	SupportPackageIsVersion1 = true
 )
 
-// I18nMessage 定义了错误消息国际化的接口
+// I18nMessage An interface to internationalize error messages is defined
 type I18nMessage interface {
-	// Localize 根据上下文和数据对错误原因进行本地化
+	// Localize Localization of error causes based on context and data
 	Localize(ctx context.Context, reason string, data any) string
 }
 
-// 全局的i18n管理器
+// The global i18n manager
 var globalI18n I18nMessage
+var globalI18nOnce sync.Once
 
-// RegisterI18nManager 注册全局的i18n管理器
+// RegisterI18nManager Register the global i18n manager
 func RegisterI18nManager(i18n I18nMessage) {
-	globalI18n = i18n
+	globalI18nOnce.Do(func() {
+		globalI18n = i18n
+	})
 }
 
 // Error is a status error.
