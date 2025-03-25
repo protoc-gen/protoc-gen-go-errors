@@ -2,9 +2,10 @@ package gen
 
 import (
 	"fmt"
-	"github.com/protoc-gen/protoc-gen-go-errors/errors"
 	"strings"
 	"unicode"
+
+	"github.com/protoc-gen/protoc-gen-go-errors/errors"
 
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
@@ -16,6 +17,7 @@ import (
 const (
 	errorsPackage         = protogen.GoImportPath("github.com/protoc-gen/protoc-gen-go-errors/errors")
 	officialErrorsPackage = protogen.GoImportPath("errors")
+	contextPackage        = protogen.GoImportPath("context")
 )
 
 var enCases = cases.Title(language.AmericanEnglish, cases.NoLower)
@@ -32,6 +34,7 @@ func GenerateFile(gen *protogen.Plugin, file *protogen.File) *protogen.Generated
 	g.P()
 	g.QualifiedGoIdent(errorsPackage.Ident(""))
 	g.QualifiedGoIdent(officialErrorsPackage.Ident(""))
+	g.QualifiedGoIdent(contextPackage.Ident(""))
 	generateFileContent(gen, file, g)
 	return g
 }

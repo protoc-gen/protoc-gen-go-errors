@@ -26,3 +26,5 @@ go.work.sum
 
 protoc-gen-go-errors
 protoc-gen-go-errors.wasm
+
+.idea

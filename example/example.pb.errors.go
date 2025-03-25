@@ -3,6 +3,7 @@
 package main
 
 import (
+	context "context"
 	errors1 "errors"
 	errors "github.com/protoc-gen/protoc-gen-go-errors/errors"
 )
@@ -34,6 +35,13 @@ func ErrorBadRequest() *errors.Error {
 	return errors.New(400, ClientError_BAD_REQUEST.String(), "")
 }
 
+func ErrorBadRequestWithContext(ctx context.Context, params ...any) *errors.Error {
+	if len(params) == 0 {
+		return errors.New(400, ClientError_BAD_REQUEST.String(), "")
+	}
+	return errors.NewWithContext(ctx, 400, ClientError_BAD_REQUEST.String(), params)
+}
+
 func IsUserNotFound(err error) bool {
 	if err == nil {
 		return false
@@ -44,6 +52,13 @@ func IsUserNotFound(err error) bool {
 
 func ErrorUserNotFound() *errors.Error {
 	return errors.New(400, ClientError_USER_NOT_FOUND.String(), "")
+}
+
+func ErrorUserNotFoundWithContext(ctx context.Context, params ...any) *errors.Error {
+	if len(params) == 0 {
+		return errors.New(400, ClientError_USER_NOT_FOUND.String(), "")
+	}
+	return errors.NewWithContext(ctx, 400, ClientError_USER_NOT_FOUND.String(), params)
 }
 
 func IsUserAlreadyExists(err error) bool {
@@ -58,6 +73,13 @@ func ErrorUserAlreadyExists() *errors.Error {
 	return errors.New(400, ClientError_USER_ALREADY_EXISTS.String(), "")
 }
 
+func ErrorUserAlreadyExistsWithContext(ctx context.Context, params ...any) *errors.Error {
+	if len(params) == 0 {
+		return errors.New(400, ClientError_USER_ALREADY_EXISTS.String(), "")
+	}
+	return errors.NewWithContext(ctx, 400, ClientError_USER_ALREADY_EXISTS.String(), params)
+}
+
 func IsInvalidEmailOrPassword(err error) bool {
 	if err == nil {
 		return false
@@ -68,6 +90,13 @@ func IsInvalidEmailOrPassword(err error) bool {
 
 func ErrorInvalidEmailOrPassword() *errors.Error {
 	return errors.New(400, ClientError_INVALID_EMAIL_OR_PASSWORD.String(), "")
+}
+
+func ErrorInvalidEmailOrPasswordWithContext(ctx context.Context, params ...any) *errors.Error {
+	if len(params) == 0 {
+		return errors.New(400, ClientError_INVALID_EMAIL_OR_PASSWORD.String(), "")
+	}
+	return errors.NewWithContext(ctx, 400, ClientError_INVALID_EMAIL_OR_PASSWORD.String(), params)
 }
 
 func IsProviderNotSupported(err error) bool {
@@ -82,6 +111,13 @@ func ErrorProviderNotSupported() *errors.Error {
 	return errors.New(400, ClientError_PROVIDER_NOT_SUPPORTED.String(), "")
 }
 
+func ErrorProviderNotSupportedWithContext(ctx context.Context, params ...any) *errors.Error {
+	if len(params) == 0 {
+		return errors.New(400, ClientError_PROVIDER_NOT_SUPPORTED.String(), "")
+	}
+	return errors.NewWithContext(ctx, 400, ClientError_PROVIDER_NOT_SUPPORTED.String(), params)
+}
+
 func IsUnauthorized(err error) bool {
 	if err == nil {
 		return false
@@ -92,6 +128,13 @@ func IsUnauthorized(err error) bool {
 
 func ErrorUnauthorized() *errors.Error {
 	return errors.New(401, UnauthorizedError_UNAUTHORIZED.String(), "")
+}
+
+func ErrorUnauthorizedWithContext(ctx context.Context, params ...any) *errors.Error {
+	if len(params) == 0 {
+		return errors.New(401, UnauthorizedError_UNAUTHORIZED.String(), "")
+	}
+	return errors.NewWithContext(ctx, 401, UnauthorizedError_UNAUTHORIZED.String(), params)
 }
 
 func IsInvalidToken(err error) bool {
@@ -106,6 +149,13 @@ func ErrorInvalidToken() *errors.Error {
 	return errors.New(401, UnauthorizedError_INVALID_TOKEN.String(), "")
 }
 
+func ErrorInvalidTokenWithContext(ctx context.Context, params ...any) *errors.Error {
+	if len(params) == 0 {
+		return errors.New(401, UnauthorizedError_INVALID_TOKEN.String(), "")
+	}
+	return errors.NewWithContext(ctx, 401, UnauthorizedError_INVALID_TOKEN.String(), params)
+}
+
 func IsTokenExpired(err error) bool {
 	if err == nil {
 		return false
@@ -118,6 +168,13 @@ func ErrorTokenExpired() *errors.Error {
 	return errors.New(401, UnauthorizedError_TOKEN_EXPIRED.String(), "")
 }
 
+func ErrorTokenExpiredWithContext(ctx context.Context, params ...any) *errors.Error {
+	if len(params) == 0 {
+		return errors.New(401, UnauthorizedError_TOKEN_EXPIRED.String(), "")
+	}
+	return errors.NewWithContext(ctx, 401, UnauthorizedError_TOKEN_EXPIRED.String(), params)
+}
+
 func IsInternalServerError(err error) bool {
 	if err == nil {
 		return false
@@ -128,4 +185,11 @@ func IsInternalServerError(err error) bool {
 
 func ErrorInternalServerError() *errors.Error {
 	return errors.New(500, ServerError_INTERNAL_SERVER_ERROR.String(), "")
+}
+
+func ErrorInternalServerErrorWithContext(ctx context.Context, params ...any) *errors.Error {
+	if len(params) == 0 {
+		return errors.New(500, ServerError_INTERNAL_SERVER_ERROR.String(), "")
+	}
+	return errors.NewWithContext(ctx, 500, ServerError_INTERNAL_SERVER_ERROR.String(), params)
 }

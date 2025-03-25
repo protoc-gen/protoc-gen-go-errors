@@ -1,8 +1,10 @@
 package errors
 
 import (
+	"context"
 	"errors"
 	"fmt"
+	"sync"
 
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/status"
@@ -16,6 +18,23 @@ const (
 	// SupportPackageIsVersion1 this constant should not be referenced by any other code.
 	SupportPackageIsVersion1 = true
 )
+
+// I18nMessage An interface to internationalize error messages is defined
+type I18nMessage interface {
+	// Localize Localization of error causes based on context and data
+	Localize(ctx context.Context, reason string, data any) string
+}
+
+// The global i18n manager
+var globalI18n I18nMessage
+var globalI18nOnce sync.Once
+
+// RegisterI18nManager Register the global i18n manager
+func RegisterI18nManager(i18n I18nMessage) {
+	globalI18nOnce.Do(func() {
+		globalI18n = i18n
+	})
+}
 
 // Error is a status error.
 type Error struct {
@@ -64,6 +83,22 @@ func (e *Error) GRPCStatus() *status.Status {
 
 // New returns an error object for the code, message.
 func New(code int, reason, message string) *Error {
+	return &Error{
+		Status: Status{
+			Code:    int32(code),
+			Message: message,
+			Reason:  reason,
+		},
+	}
+}
+
+// NewWithContext Use context to create error objects and support i18n localization
+func NewWithContext(ctx context.Context, code int, reason string, data any) *Error {
+	message := ""
+	// If the global i18n manager is registered, it is used to localize the error message
+	if globalI18n != nil {
+		message = globalI18n.Localize(ctx, reason, data)
+	}
 	return &Error{
 		Status: Status{
 			Code:    int32(code),
