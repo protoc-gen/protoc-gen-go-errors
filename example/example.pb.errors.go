@@ -36,8 +36,8 @@ func ErrorBadRequest() *errors.Error {
 	return errors.New(400, ClientError_BAD_REQUEST.String(), "")
 }
 
-func ErrorBadRequestWithMessage(ctx context.Context, format string, params ...any) *errors.Error {
-	return errors.NewWithContext(ctx, 400, ClientError_BAD_REQUEST.String(), fmt.Sprintf(format, params...))
+func ErrorBadRequestWithMessage(format string, params ...any) *errors.Error {
+	return errors.New(400, ClientError_BAD_REQUEST.String(), fmt.Sprintf(format, params...))
 }
 
 func ErrorBadRequestWithContext(ctx context.Context, params ...any) *errors.Error {
@@ -59,8 +59,8 @@ func ErrorUserNotFound() *errors.Error {
 	return errors.New(400, ClientError_USER_NOT_FOUND.String(), "")
 }
 
-func ErrorUserNotFoundWithMessage(ctx context.Context, format string, params ...any) *errors.Error {
-	return errors.NewWithContext(ctx, 400, ClientError_USER_NOT_FOUND.String(), fmt.Sprintf(format, params...))
+func ErrorUserNotFoundWithMessage(format string, params ...any) *errors.Error {
+	return errors.New(400, ClientError_USER_NOT_FOUND.String(), fmt.Sprintf(format, params...))
 }
 
 func ErrorUserNotFoundWithContext(ctx context.Context, params ...any) *errors.Error {
@@ -82,8 +82,8 @@ func ErrorUserAlreadyExists() *errors.Error {
 	return errors.New(400, ClientError_USER_ALREADY_EXISTS.String(), "")
 }
 
-func ErrorUserAlreadyExistsWithMessage(ctx context.Context, format string, params ...any) *errors.Error {
-	return errors.NewWithContext(ctx, 400, ClientError_USER_ALREADY_EXISTS.String(), fmt.Sprintf(format, params...))
+func ErrorUserAlreadyExistsWithMessage(format string, params ...any) *errors.Error {
+	return errors.New(400, ClientError_USER_ALREADY_EXISTS.String(), fmt.Sprintf(format, params...))
 }
 
 func ErrorUserAlreadyExistsWithContext(ctx context.Context, params ...any) *errors.Error {
@@ -105,8 +105,8 @@ func ErrorInvalidEmailOrPassword() *errors.Error {
 	return errors.New(400, ClientError_INVALID_EMAIL_OR_PASSWORD.String(), "")
 }
 
-func ErrorInvalidEmailOrPasswordWithMessage(ctx context.Context, format string, params ...any) *errors.Error {
-	return errors.NewWithContext(ctx, 400, ClientError_INVALID_EMAIL_OR_PASSWORD.String(), fmt.Sprintf(format, params...))
+func ErrorInvalidEmailOrPasswordWithMessage(format string, params ...any) *errors.Error {
+	return errors.New(400, ClientError_INVALID_EMAIL_OR_PASSWORD.String(), fmt.Sprintf(format, params...))
 }
 
 func ErrorInvalidEmailOrPasswordWithContext(ctx context.Context, params ...any) *errors.Error {
@@ -128,8 +128,8 @@ func ErrorProviderNotSupported() *errors.Error {
 	return errors.New(400, ClientError_PROVIDER_NOT_SUPPORTED.String(), "")
 }
 
-func ErrorProviderNotSupportedWithMessage(ctx context.Context, format string, params ...any) *errors.Error {
-	return errors.NewWithContext(ctx, 400, ClientError_PROVIDER_NOT_SUPPORTED.String(), fmt.Sprintf(format, params...))
+func ErrorProviderNotSupportedWithMessage(format string, params ...any) *errors.Error {
+	return errors.New(400, ClientError_PROVIDER_NOT_SUPPORTED.String(), fmt.Sprintf(format, params...))
 }
 
 func ErrorProviderNotSupportedWithContext(ctx context.Context, params ...any) *errors.Error {
@@ -151,8 +151,8 @@ func ErrorUnauthorized() *errors.Error {
 	return errors.New(401, UnauthorizedError_UNAUTHORIZED.String(), "")
 }
 
-func ErrorUnauthorizedWithMessage(ctx context.Context, format string, params ...any) *errors.Error {
-	return errors.NewWithContext(ctx, 401, UnauthorizedError_UNAUTHORIZED.String(), fmt.Sprintf(format, params...))
+func ErrorUnauthorizedWithMessage(format string, params ...any) *errors.Error {
+	return errors.New(401, UnauthorizedError_UNAUTHORIZED.String(), fmt.Sprintf(format, params...))
 }
 
 func ErrorUnauthorizedWithContext(ctx context.Context, params ...any) *errors.Error {
@@ -174,8 +174,8 @@ func ErrorInvalidToken() *errors.Error {
 	return errors.New(401, UnauthorizedError_INVALID_TOKEN.String(), "")
 }
 
-func ErrorInvalidTokenWithMessage(ctx context.Context, format string, params ...any) *errors.Error {
-	return errors.NewWithContext(ctx, 401, UnauthorizedError_INVALID_TOKEN.String(), fmt.Sprintf(format, params...))
+func ErrorInvalidTokenWithMessage(format string, params ...any) *errors.Error {
+	return errors.New(401, UnauthorizedError_INVALID_TOKEN.String(), fmt.Sprintf(format, params...))
 }
 
 func ErrorInvalidTokenWithContext(ctx context.Context, params ...any) *errors.Error {
@@ -197,8 +197,8 @@ func ErrorTokenExpired() *errors.Error {
 	return errors.New(401, UnauthorizedError_TOKEN_EXPIRED.String(), "")
 }
 
-func ErrorTokenExpiredWithMessage(ctx context.Context, format string, params ...any) *errors.Error {
-	return errors.NewWithContext(ctx, 401, UnauthorizedError_TOKEN_EXPIRED.String(), fmt.Sprintf(format, params...))
+func ErrorTokenExpiredWithMessage(format string, params ...any) *errors.Error {
+	return errors.New(401, UnauthorizedError_TOKEN_EXPIRED.String(), fmt.Sprintf(format, params...))
 }
 
 func ErrorTokenExpiredWithContext(ctx context.Context, params ...any) *errors.Error {
@@ -220,8 +220,8 @@ func ErrorInternalServerError() *errors.Error {
 	return errors.New(500, ServerError_INTERNAL_SERVER_ERROR.String(), "")
 }
 
-func ErrorInternalServerErrorWithMessage(ctx context.Context, format string, params ...any) *errors.Error {
-	return errors.NewWithContext(ctx, 500, ServerError_INTERNAL_SERVER_ERROR.String(), fmt.Sprintf(format, params...))
+func ErrorInternalServerErrorWithMessage(format string, params ...any) *errors.Error {
+	return errors.New(500, ServerError_INTERNAL_SERVER_ERROR.String(), fmt.Sprintf(format, params...))
 }
 
 func ErrorInternalServerErrorWithContext(ctx context.Context, params ...any) *errors.Error {
